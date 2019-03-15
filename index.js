@@ -173,7 +173,7 @@ class RNParallax extends Component {
     const { scrollY } = this.state;
     return scrollY.interpolate({
       inputRange: this.getInputRange(),
-      outputRange: [5, 0, 0],
+      outputRange: [5, 0, -this.getHeaderScrollDistance()],
       extrapolate: 'clamp',
     });
   }
