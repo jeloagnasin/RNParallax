@@ -332,7 +332,12 @@ class RNParallax extends Component {
         )}
         {...scrollViewProps}
       >
-        {renderContent()}
+        {Platform.OS === 'ios' ?
+          renderContent() :
+          <View style={[{ marginTop: this.getHeaderMaxHeight() }, innerContainerStyle]}>
+            {renderContent()}
+          </View>
+        }
       </Animated.ScrollView>
     );
   }
@@ -344,7 +349,9 @@ class RNParallax extends Component {
         <StatusBar
           backgroundColor={statusBarColor || navbarColor}
         />
-        <Animated.View style={{ height: this.getHeaderHeight() }} />
+        {Platform.OS === 'ios' &&
+          <Animated.View style={{ height: this.getHeaderHeight() }} />
+        }
         {this.renderScrollView()}
         {this.renderNavbarBackground()}
         {this.renderHeaderBackground()}
